@@ -59,48 +59,48 @@ const customer = {
 };
 
 //MAIN TABLE
-const productsData = [
-  {
-    product: 'TBV London-TKV Geneva',
-    date: '18/02',
-    revenue: 862292.06,
-    changefirst: -1.35,
-    tickets: 400,
-    changesecond: 0,
-    atp: 40.64,
-    baserevenue: 862292.06,
-  },
-  {
-    product: 'TBV London-TKV Geneva',
-    date: '18/02',
-    revenue: 862292.06,
-    changefirst: -1.35,
-    tickets: 400,
-    changesecond: 0.55,
-    atp: 40.64,
-    baserevenue: 862292.06,
-  },
-  {
-    product: 'TBV London-TKV Geneva',
-    date: '18/02',
-    revenue: 862292.06,
-    changefirst: -1.35,
-    tickets: 400,
-    changesecond: 0.55,
-    atp: 40.64,
-    baserevenue: 862292.06,
-  },
-  {
-    product: 'TBV London-TKV Geneva',
-    date: '18/02',
-    revenue: 862292.06,
-    changefirst: -1.35,
-    tickets: 400,
-    changesecond: 0.55,
-    atp: 40.64,
-    baserevenue: 862292.06,
-  },
-];
+// const productsData = [
+//   {
+//     product: 'TBV London-TKV Geneva',
+//     date: '18/02',
+//     revenue: 862292.06,
+//     changefirst: -1.35,
+//     tickets: 400,
+//     changesecond: 0,
+//     atp: 40.64,
+//     baserevenue: 862292.06,
+//   },
+//   {
+//     product: 'TBV London-TKV Geneva',
+//     date: '18/02',
+//     revenue: 662292.06,
+//     changefirst: -1.35,
+//     tickets: 400,
+//     changesecond: 0.55,
+//     atp: 40.64,
+//     baserevenue: 862292.06,
+//   },
+//   {
+//     product: 'TBV London-TKV Geneva',
+//     date: '18/02',
+//     revenue: 562292.06,
+//     changefirst: -1.35,
+//     tickets: 400,
+//     changesecond: 0.55,
+//     atp: 40.64,
+//     baserevenue: 862292.06,
+//   },
+//   {
+//     product: 'TBV London-TKV Geneva',
+//     date: '18/02',
+//     revenue: 762292.06,
+//     changefirst: -1.35,
+//     tickets: 400,
+//     changesecond: 0.55,
+//     atp: 40.64,
+//     baserevenue: 862292.06,
+//   },
+// ];
 
 const accountsData = [
   {
@@ -431,6 +431,68 @@ const Dashboard = ({ filterColumns }) => {
   //   setTab(val);
   // };
   // console.log(tab);
+  //=======================================================
+  //TEST CLICK ON COLUMN
+  // const [sort, setSort] = useState('asc');
+  const [productsData, setProductsData] = useState([
+    {
+      product: 'IBV London-TKV Geneva',
+      date: '18/02',
+      revenue: 862292.06,
+      changefirst: -1.35,
+      tickets: 400,
+      changesecond: 0,
+      atp: 40.64,
+      baserevenue: 862292.06,
+    },
+    {
+      product: 'SBV London-TKV Geneva',
+      date: '18/02',
+      revenue: 662292.06,
+      changefirst: -1.35,
+      tickets: 100,
+      changesecond: 0.55,
+      atp: 39.64,
+      baserevenue: 862292.06,
+    },
+    {
+      product: 'ABV London-TKV Geneva',
+      date: '18/02',
+      revenue: 562292.06,
+      changefirst: -1.35,
+      tickets: 300,
+      changesecond: 0.55,
+      atp: 41.64,
+      baserevenue: 862292.06,
+    },
+    {
+      product: 'FBV London-TKV Geneva',
+      date: '18/02',
+      revenue: 762292.06,
+      changefirst: -1.35,
+      tickets: 200,
+      changesecond: 0.55,
+      atp: 45.64,
+      baserevenue: 862292.06,
+    },
+  ]);
+
+  const onSort = (sortField) => {
+    // console.log('click column: ', sortField);
+    const sortedProductsData = [...productsData].sort((a, b) => {
+      return b[`${sortField}`] - a[`${sortField}`];
+    });
+
+    setProductsData(sortedProductsData);
+    // };
+    //   const clonedProducData = [...productsData];
+    //   const sortType = sort === 'asc' ? setSort('desc') : setSort('asc');
+    //   const orderedData = _.orderBy(clonedProducData, ['revenue'], sortType);
+    //   setProductData({
+    //     orderedData,
+    //   });
+    //   // setSort(sortType);
+  };
   return (
     <div className="h-100 container-fluid pt-3">
       <div className="row">
@@ -515,6 +577,7 @@ const Dashboard = ({ filterColumns }) => {
                       (col) => !filterColumns.includes(col.key)
                     )}
                     data={productsData}
+                    onSort={onSort}
                   />
                 </div>
               </Card>
