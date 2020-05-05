@@ -480,7 +480,13 @@ const Dashboard = ({ filterColumns }) => {
   const onSort = (sortField) => {
     // console.log('click column: ', sortField);
     const sortedProductsData = [...productsData].sort((a, b) => {
-      return b[`${sortField}`] - a[`${sortField}`];
+      if (b[`${sortField}`] - a[`${sortField}`]) {
+        return -1;
+      }
+      if (b[`${sortField}`] - a[`${sortField}`]) {
+        return 1;
+      }
+      return 0;
     });
 
     setProductsData(sortedProductsData);
